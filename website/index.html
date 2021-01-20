@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Brett Thompson - Texas Rangers Analytics Survey</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/flatly/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- JS for Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</head>
+
+
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-nav">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">MLB 2021 HR Projections</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="assets/marcel.html">Marcel Projections</a>
+                        <a class="dropdown-item" href="assets/RFTable.html">Random Forest Single Season</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="assets/dataViz.html">Data Visualization</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" href="data.html">Raw Data</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row" style="margin-top:5%">
+            <div class="col-md-12">
+                <h1>Texas Rangers Baseball Analytics Survey</h1>
+                <hr>
+                <p>This website allows easy navigation through Brett Thompson's analytical survey for the Texas Rangers Baseball Organization. The home page shows the write-up and methodology for the models applied to determine the Top HR hitters for the
+                    2021 MLB Season. To access additional data such as HR Projections Tables, Data Visualizations, or Raw Data used in the Survey, please use the links on the top right hand side of the page.
+                </p>
+                <hr>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h3 style="margin-left:5%">Overview: Data Science & Methodology</h3>
+            <p>This dataset contains standard and statcast baseball statistics from the 2017 – 2020 Major League Baseball season for individual batters. Initially, there are a total of 847 unique batters included in the dataset. This data was collected directly
+                from Lahman’s Baseball Database, as well as Baseball Reference and Baseball Savant. Questions to be asked from this dataset include: (1) Who will be the top 10 Home Run hitters for the 2021 MLB season? (2) How many home runs will they
+                hit?
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h3 style="margin-left:5%">Data</h3>
+            <p style="margin-left: 5%">The data was first cleaned to ensure accurate projections for 2021 home runs. First, any player considered as a “pitcher” was removed from the dataset.</p>
+            <p>Second, the 2020 baseball season was shortened to a 60-game games due to COVID-19 so all data from 2020 was adjusted to reflect the standard 162-game season. A simple adjustment of multiplying each hitting statistic by 2.7 for 2020 season
+                was used. </p>
+            <p>Next, batters that were not considered as “qualifying” were filtered and removed. To determine qualified batters, Major League Baseball denotes that a minimum of 502 plate appearances is required to be considered a “qualified batter.” Plate
+                appearances (PA) were not listed in the original dataset, but can be calculated as follows:</p>
+            <p style="text-align:center; font-size: 20px;"><b>PA</b> = <i>(AtBats) + (Walks) + (SacBunts) + (SacFlys) + (HitByPitch) + (CatcherInterference)</i></p>
+            <p>This calculation was performed per player and added as an individual column to conclude the initial cleaning of data. </p>
+            <p>The Marcel Projection system was performed on the individual 2018, 2019, and 2020 (adjusted) baseball seasons. Marcel is a system of player projections developed by statistician Tom Tango. After weighting the 2018, 2019, and 2020 seasons based
+                off Marcel, aging adjustments were added to the data to refine the projections. </p>
+            <p>Alternatively, a random forest regressor was used on Statcast data to model a regression of predicted home runs. The results of this model did not end up being significant and it should be considered less reliable than the Marcel Projections.</p>
+
+            </p>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h3 style="margin-left:5%">Results</h3>
+            <br>
+        </div>
+        <div class="col-md-6 text-center">
+            <a href="assets/images/marcelData.PNG">
+                <img src="assets/images/marcelData.PNG" style="width: 80%;"></a>
+        </div>
+        <div class="col-md-6 text-center">
+            <a href="assets/images/RFData.PNG">
+                <img src="assets/images/RFData.PNG" style="width: 80%; border: 1px;"></a>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12 text-left">
+            <h3 style="margin-left:5%">Conclusions / Recommendations / Limitations & Bias</h3>
+            <br>
+            <h5>Conclusions</h5>
+            <p>The marcel system based on qualified batters projects Mike Trout to lead all batters in HR next year. Marcel is a basic forecasting system that regresses toward the mean and adds age as a factor. Given the little amount of intelligence the
+                model uses the projections are not certified, reviewed or confirmed.
+            </p>
+            <br>
+            <h5>Recommendations</h5>
+            <p>Marcel weights each season individually, with the most recent season being weighted the highest. With the 2020 season being shortened, further analysis might swap the 2019 weights with 2020 weights. This would put more emphasis on a full season
+                of data and may improve projection performance. The random forest model may improve with alternative features. The features utilized in the model generated the highest r² value, but not ALL statcast data was utilized. Park factors may
+                lead to further adjustments in both models for total predicted home runs. Creating a metric that measures performance would be recommended for improving the model.
+            </p>
+            <br>
+            <h5>Limitations/Bias</h5>
+            <p>Overall, this was an amazing learning experience. I was introduced to Machine Learning two weeks ago and applied what I could through the random forest model. With continued practice and education in the machine learning field, the regressions
+                will improve. The random forest model in particular is something that I learned can be more accurate than a linear regression or simple decision tree regressor. Marcel is also something I was introduced to last week. I am confident in
+                the projections, but understand there are some areas that I can improve on in the model. Players that were injured or did not qualify for the batting title were removed from the dataset making the data limited to those with a significant
+                number of plate appearance. This may make the model less accurate for predicting home runs if players were to qualify the following season or remained healthy.
+            </p>
+        </div>
+    </div>
+    </div>
+
+</body>
+
+</html>
